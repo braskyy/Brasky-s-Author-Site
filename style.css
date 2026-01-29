@@ -292,25 +292,28 @@ h1 {
     margin-top: 2rem;
     padding-left: 5px;
 
-.clown-icon {
-    width: 28px;
-    height: 28px;
+.jester-icon {
+    width: 32px;
+    height: 32px;
     display: block;
-    margin-bottom: 1rem;
-    color: var(--text-color); /* This makes it pure black to match your text */
+    margin-bottom: 1.2rem;
+    color: var(--text-color);
     opacity: 0.8;
 }
 
 .placeholder-box {
     text-align: left;
     margin-top: 1rem;
+    border-left: 1px solid rgba(0,0,0,0.05); /* Optional: adds a subtle "legal margin" line */
+    padding-left: 1.5rem;
 }
 
 .placeholder-title {
     font-family: var(--font-geom);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 2px;
     color: var(--accent-color);
     margin-bottom: 0.5rem;
+}
 }
