@@ -285,3 +285,27 @@ h1 {
     margin-bottom: 1.5rem;
     word-break: break-all; /* Ensures it doesn't break on small phone screens */
 }
+
+/* PLACEHOLDER STYLING */
+.placeholder-box {
+    text-align: left;
+    margin-top: 2rem;
+    padding-left: 5px;
+}
+
+.clown-icon {
+    font-size: 1.5rem; /* Small and sharp */
+    display: block;
+    margin-bottom: 1rem;
+    filter: grayscale(100%); /* Keeps it matching your monochromatic look */
+    opacity: 0.7;
+}
+
+.placeholder-title {
+    font-family: var(--font-geom);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
