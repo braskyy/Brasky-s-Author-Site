@@ -227,3 +227,49 @@ h1 {
     .book-card-container { height: auto; padding: 4rem 2rem; }
     .book-details { padding: 4rem 10%; }
 }
+
+/* AUDIO SPECIFIC STYLING - REVISED */
+.audio-block {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    max-width: 600px; /* Limits the total width of the entry */
+}
+
+.audio-poster {
+    width: 120px; /* Small, sharp thumbnail size */
+    height: 120px;
+    flex-shrink: 0;
+    background-color: #eee; /* Light gray placeholder while loading */
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.album-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents stretching */
+    display: block;
+}
+
+.audio-info {
+    flex: 1;
+}
+
+/* Adjusting the text for the smaller layout */
+.audio-info .featured-link {
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+}
+
+@media (max-width: 600px) {
+    .audio-block { 
+        flex-direction: row; /* Keeps them side-by-side even on small screens */
+        align-items: center;
+    }
+    .audio-poster {
+        width: 80px;
+        height: 80px;
+    }
+}
