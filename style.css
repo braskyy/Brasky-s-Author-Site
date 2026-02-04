@@ -147,15 +147,6 @@ h1 {
     max-width: 380px;
 }
 
-.manuscript-quote {
-    margin-top: 1.2rem;
-    font-size: 0.95rem;
-    color: #999;
-    border-top: 1px solid rgba(0,0,0,0.04);
-    padding-top: 0.8rem;
-    font-style: italic;
-}
-
 .inquire-link {
     display: inline-block;
     margin-top: 1.8rem;
@@ -203,17 +194,6 @@ h1 {
     max-width: 600px;
 }
 
-.big-contact-link {
-    font-family: var(--font-serif);
-    font-size: 3rem;
-    font-style: italic;
-    text-decoration: none;
-    color: var(--text-color);
-    border-bottom: 2px solid var(--accent-color);
-}
-
-.copyright { font-family: var(--font-geom); font-size: 0.6rem; margin-top: 4rem; color: #aaa; }
-
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
@@ -228,20 +208,20 @@ h1 {
     .book-details { padding: 4rem 10%; }
 }
 
-/* AUDIO SPECIFIC STYLING - REVISED */
+/* AUDIO SPECIFIC STYLING */
 .audio-block {
     display: flex;
     gap: 1.5rem;
     align-items: flex-start;
     margin-bottom: 3rem;
-    max-width: 600px; /* Limits the total width of the entry */
+    max-width: 600px;
 }
 
 .audio-poster {
-    width: 120px; /* Small, sharp thumbnail size */
+    width: 120px;
     height: 120px;
     flex-shrink: 0;
-    background-color: #eee; /* Light gray placeholder while loading */
+    background-color: #eee;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
@@ -249,49 +229,26 @@ h1 {
 .album-art {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Prevents stretching */
+    object-fit: cover;
     display: block;
 }
 
-.audio-info {
-    flex: 1;
-}
-
-/* Adjusting the text for the smaller layout */
-.audio-info .featured-link {
-    font-size: 1.2rem;
-    margin-top: 0.2rem;
-}
-
-@media (max-width: 600px) {
-    .audio-block { 
-        flex-direction: row; /* Keeps them side-by-side even on small screens */
-        align-items: center;
-    }
-    .audio-poster {
-        width: 80px;
-        height: 80px;
-    }
-}
+.audio-info { flex: 1; }
+.audio-info .featured-link { font-size: 1.2rem; margin-top: 0.2rem; }
 
 .big-contact-text {
-    font-family: var(--font-geom); /* Switches to Hanken Grotesk */
-    font-size: clamp(1.5rem, 4vw, 2.2rem); /* Large, but slightly smaller to stay elegant */
+    font-family: var(--font-geom);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
     font-weight: 700;
-    text-transform: uppercase; /* Matches your navigation and titles */
+    text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--text-color);
     display: block;
     margin-bottom: 1.5rem;
-    word-break: break-all; /* Ensures it doesn't break on small phone screens */
+    word-break: break-all;
 }
 
-/* PLACEHOLDER STYLING */
-.placeholder-box {
-    text-align: left;
-    margin-top: 2rem;
-    padding-left: 5px;
-
+/* PLACEHOLDER STYLING - CORRECTED */
 .jester-icon {
     width: 32px;
     height: 32px;
@@ -304,7 +261,7 @@ h1 {
 .placeholder-box {
     text-align: left;
     margin-top: 1rem;
-    border-left: 1px solid rgba(0,0,0,0.05); /* Optional: adds a subtle "legal margin" line */
+    border-left: 1px solid rgba(0,0,0,0.05);
     padding-left: 1.5rem;
 }
 
@@ -316,81 +273,8 @@ h1 {
     color: var(--accent-color);
     margin-bottom: 0.5rem;
 }
-}
 
-/* REVISED ZINE THUMBNAIL STYLING */
-.zine-block {
-    display: flex;
-    gap: 2.5rem;
-    align-items: flex-start;
-    margin-bottom: 5rem;
-    max-width: 900px; /* Keeps the text from stretching too far */
-}
-
-.zine-thumb {
-    width: 220px; /* Strict width to stay smaller than the home page cover */
-    flex-shrink: 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12); /* Mimics the home page "playing card" shadow */
-    border: 1px solid rgba(0,0,0,0.03); /* Subtle edge definition */
-}
-
-.zine-thumb img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-}
-
-.zine-info {
-    flex: 1;
-    padding-top: 0.5rem;
-}
-
-/* Mobile Fix */
-@media (max-width: 768px) {
-    .zine-block { 
-        flex-direction: column; 
-        gap: 1.5rem; 
-    }
-    .zine-thumb { 
-        width: 180px; /* Even smaller on mobile */
-    }
-}
-
-/* EDITORIAL SPECIFIC STYLING - MATCHING ZINE SCALE */
-.editorial-block {
-    display: flex;
-    gap: 1.5rem; /* Tightened gap to match the smaller image */
-    align-items: flex-start;
-    margin-bottom: 3rem;
-}
-
-.editorial-poster {
-    width: 100px; /* Strict width to match Nihilist Benediction scale */
-    flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    background-color: #fff;
-    border: 1px solid rgba(0,0,0,0.03); /* Very faint border for paper effect */
-}
-
-.editorial-art {
-    width: 100%;
-    height: auto;
-    display: block;
-    /* This ensures no strange scaling occurs */
-    image-rendering: -webkit-optimize-contrast; 
-}
-
-@media (max-width: 600px) {
-    .editorial-block { 
-        gap: 1rem;
-    }
-    .editorial-poster { 
-        width: 80px; /* Scales down slightly for mobile */
-    }
-}
-
-/* UNIVERSAL MEDIA BLOCK (Zines & Editorial) */
+/* ZINES & EDITORIAL MATCHING SCALE */
 .zine-block, .editorial-block {
     display: flex;
     gap: 2rem;
@@ -398,29 +282,19 @@ h1 {
     margin-bottom: 4rem;
 }
 
-/* This forces both containers to be the same small size */
 .zine-thumb, .editorial-poster {
     width: 110px; 
     flex-shrink: 0;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* This ensures the images fill that small container perfectly */
 .zine-thumb img, .editorial-art {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.zine-info, .editorial-block .project-block {
-    flex: 1;
-}
-
 @media (max-width: 600px) {
-    .zine-block, .editorial-block { 
-        gap: 1.2rem; 
-    }
-    .zine-thumb, .editorial-poster { 
-        width: 85px; 
-    }
+    .zine-block, .editorial-block { gap: 1.2rem; }
+    .zine-thumb, .editorial-poster { width: 85px; }
 }
