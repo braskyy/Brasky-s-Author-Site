@@ -389,3 +389,38 @@ h1 {
         width: 80px; /* Scales down slightly for mobile */
     }
 }
+
+/* UNIVERSAL MEDIA BLOCK (Zines & Editorial) */
+.zine-block, .editorial-block {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+}
+
+/* This forces both containers to be the same small size */
+.zine-thumb, .editorial-poster {
+    width: 110px; 
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* This ensures the images fill that small container perfectly */
+.zine-thumb img, .editorial-art {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.zine-info, .editorial-block .project-block {
+    flex: 1;
+}
+
+@media (max-width: 600px) {
+    .zine-block, .editorial-block { 
+        gap: 1.2rem; 
+    }
+    .zine-thumb, .editorial-poster { 
+        width: 85px; 
+    }
+}
