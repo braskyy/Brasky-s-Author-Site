@@ -147,9 +147,9 @@ h1 {
     max-width: 380px;
 }
 
-/* PROJECT LIST SPACING */
+/* TIGHTENED PROJECT LIST SPACING */
 .project-block {
-    margin-bottom: 3.5rem; /* Space between different works */
+    margin-bottom: 3.5rem; /* Breathable gap between different works */
 }
 
 .date {
@@ -167,7 +167,9 @@ h1 {
     font-weight: 600;
     text-transform: uppercase;
     display: block;
-    margin: 0.2rem 0 0.2rem; /* Reduced bottom margin to pull description up */
+    margin-top: 0.2rem;
+    margin-bottom: 0px !important; /* Eliminates gap below title */
+    line-height: 1.1;
 }
 
 .featured-desc {
@@ -176,7 +178,8 @@ h1 {
     font-style: italic;
     color: #555;
     max-width: 600px;
-    margin-top: 0; /* Ensures no extra gap above italics */
+    margin-top: 2px !important; /* Forces the description to sit directly below the title */
+    line-height: 1.4;
 }
 
 /* SECTION PAGES */
@@ -207,7 +210,7 @@ h1 {
     .book-details { padding: 4rem 10%; }
 }
 
-/* MEDIA BLOCKS (Zines, Editorial, Audio) */
+/* MEDIA BLOCKS */
 .zine-block, .editorial-block, .audio-block {
     display: flex;
     gap: 2rem;
@@ -239,7 +242,6 @@ h1 {
     letter-spacing: 1px;
     color: var(--text-color);
     display: block;
-    word-break: break-all;
 }
 
 /* PLACEHOLDER STYLING */
