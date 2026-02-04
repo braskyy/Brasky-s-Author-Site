@@ -357,33 +357,35 @@ h1 {
     }
 }
 
-/* EDITORIAL SPECIFIC STYLING */
+/* EDITORIAL SPECIFIC STYLING - MATCHING ZINE SCALE */
 .editorial-block {
     display: flex;
-    gap: 2.5rem;
+    gap: 1.5rem; /* Tightened gap to match the smaller image */
     align-items: flex-start;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
 
 .editorial-poster {
-    width: 180px; /* Matching the Zine/Mini-book scale */
+    width: 100px; /* Strict width to match Nihilist Benediction scale */
     flex-shrink: 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.03); /* Very faint border for paper effect */
 }
 
 .editorial-art {
     width: 100%;
     height: auto;
     display: block;
+    /* This ensures no strange scaling occurs */
+    image-rendering: -webkit-optimize-contrast; 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .editorial-block { 
-        flex-direction: column; 
-        gap: 1.5rem;
+        gap: 1rem;
     }
     .editorial-poster { 
-        width: 160px; 
+        width: 80px; /* Scales down slightly for mobile */
     }
 }
