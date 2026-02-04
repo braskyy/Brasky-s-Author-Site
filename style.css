@@ -356,3 +356,34 @@ h1 {
         width: 180px; /* Even smaller on mobile */
     }
 }
+
+/* EDITORIAL SPECIFIC STYLING */
+.editorial-block {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+}
+
+.editorial-poster {
+    width: 180px; /* Matching the Zine/Mini-book scale */
+    flex-shrink: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    background-color: #fff;
+}
+
+.editorial-art {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .editorial-block { 
+        flex-direction: column; 
+        gap: 1.5rem;
+    }
+    .editorial-poster { 
+        width: 160px; 
+    }
+}
