@@ -147,18 +147,36 @@ h1 {
     max-width: 380px;
 }
 
-.inquire-link {
-    display: inline-block;
-    margin-top: 1.8rem;
+/* PROJECT LIST SPACING */
+.project-block {
+    margin-bottom: 3.5rem; /* Space between different works */
+}
+
+.date {
     font-family: var(--font-geom);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #999;
+}
+
+.featured-link {
+    font-family: var(--font-geom);
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: var(--text-color);
     font-weight: 600;
     text-transform: uppercase;
-    color: black;
-    text-decoration: none;
-    border-bottom: 1.5px solid var(--accent-color);
-    padding-bottom: 2px;
-    font-size: 0.65rem;
-    align-self: flex-start;
+    display: block;
+    margin: 0.2rem 0 0.2rem; /* Reduced bottom margin to pull description up */
+}
+
+.featured-desc {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #555;
+    max-width: 600px;
+    margin-top: 0; /* Ensures no extra gap above italics */
 }
 
 /* SECTION PAGES */
@@ -175,25 +193,6 @@ h1 {
     margin-bottom: 3rem;
 }
 
-.featured-link {
-    font-family: var(--font-geom);
-    font-size: 1.4rem;
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 600;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.featured-desc {
-    font-family: var(--font-serif);
-    font-size: 1.2rem;
-    font-style: italic;
-    color: #555;
-    max-width: 600px;
-}
-
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
@@ -208,33 +207,29 @@ h1 {
     .book-details { padding: 4rem 10%; }
 }
 
-/* AUDIO SPECIFIC STYLING */
-.audio-block {
+/* MEDIA BLOCKS (Zines, Editorial, Audio) */
+.zine-block, .editorial-block, .audio-block {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     align-items: flex-start;
-    margin-bottom: 3rem;
-    max-width: 600px;
+    margin-bottom: 4rem;
 }
 
-.audio-poster {
-    width: 120px;
-    height: 120px;
+.zine-thumb, .editorial-poster, .audio-poster {
+    width: 110px; 
     flex-shrink: 0;
-    background-color: #eee;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.album-art {
+.audio-poster { height: 110px; overflow: hidden; }
+
+.zine-thumb img, .editorial-art, .album-art {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
 }
 
-.audio-info { flex: 1; }
-.audio-info .featured-link { font-size: 1.2rem; margin-top: 0.2rem; }
+.album-art { height: 100%; object-fit: cover; }
 
 .big-contact-text {
     font-family: var(--font-geom);
@@ -244,17 +239,15 @@ h1 {
     letter-spacing: 1px;
     color: var(--text-color);
     display: block;
-    margin-bottom: 1.5rem;
     word-break: break-all;
 }
 
-/* PLACEHOLDER STYLING - CORRECTED */
+/* PLACEHOLDER STYLING */
 .jester-icon {
     width: 32px;
     height: 32px;
     display: block;
     margin-bottom: 1.2rem;
-    color: var(--text-color);
     opacity: 0.8;
 }
 
@@ -274,27 +267,8 @@ h1 {
     margin-bottom: 0.5rem;
 }
 
-/* ZINES & EDITORIAL MATCHING SCALE */
-.zine-block, .editorial-block {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-    margin-bottom: 4rem;
-}
-
-.zine-thumb, .editorial-poster {
-    width: 110px; 
-    flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.zine-thumb img, .editorial-art {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
 @media (max-width: 600px) {
-    .zine-block, .editorial-block { gap: 1.2rem; }
-    .zine-thumb, .editorial-poster { width: 85px; }
+    .zine-block, .editorial-block, .audio-block { gap: 1.2rem; }
+    .zine-thumb, .editorial-poster, .audio-poster { width: 85px; }
+    .audio-poster { height: 85px; }
 }
