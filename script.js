@@ -24,7 +24,7 @@ const shapesScript = [
 
 let currentSlideIdx = 0;
 // Replace YOUR_SLIDE_ID with your actual Slide ID
-const slideBase = "https://docs.google.com/presentation/d/YOUR_SLIDE_ID/embed?start=false&loop=false&rm=minimal";
+const slideBase = "https://docs.google.com/presentation/d/1PyHlxvv6sGvsd0dFSGJ9S2KjVCDexYPIenSGSET3Mb0/embed?start=false&loop=false&rm=minimal";
 
 function startShapesEgg() {
     const overlay = document.getElementById('shapes-overlay');
