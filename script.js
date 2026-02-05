@@ -69,5 +69,5 @@ function closeShapesEgg() {
     audio.pause();
     audio.currentTime = 0;
     overlay.style.display = 'none';
-}
+
 }
