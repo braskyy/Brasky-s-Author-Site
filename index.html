@@ -194,15 +194,59 @@
     </main>
 </div>
 
-<div id="shapes-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#000; z-index:10000; flex-direction:column; align-items:center; justify-content:center;">
-    <div style="margin-bottom: 20px;">
-        <button onclick="closeShapesEgg()" style="background:transparent; color:#444; border:1px solid #444; font-family:'Hanken Grotesk', sans-serif; font-size:0.6rem; letter-spacing:2px; padding:5px 15px; cursor:pointer;">EXIT PRESENTATION</button>
-    </div>
-    <div style="width:80%; aspect-ratio:16/9; background:#111;">
-        <iframe id="shapes-frame" src="https://docs.google.com/presentation/d/1PyHlxvv6sGvsd0dFSGJ9S2KjVCDexYPIenSGSET3Mb0/embed?start=false&loop=false&rm=minimal" frameborder="0" width="100%" height="100%" allowfullscreen="true"></iframe>
-    </div>
-    <audio id="quinha-audio" src="song for quinha.mp3"></audio>
+<a href="javascript:void(0);" id="jester-link" style="color: inherit; text-decoration: none; cursor: default;">JESTER</a>
+
+<audio id="quinha-audio" src="song for quinha.mp3"></audio>
+
+<div id="slideshow-container" style="display:none; margin-top:20px;">
+  <iframe id="slideshow-iframe" src="" width="960" height="569" allowfullscreen="true"></iframe>
 </div>
+
+<script>
+// The Script Data mapped to your Slide IDs [cite: 102, 105, 113, 119, 125, 132, 139, 144, 155, 157, 161, 168, 173]
+const presentationBaseUrl = "https://docs.google.com/presentation/d/e/2PACX-1vSw3V-AQSApO_EyNtxfqGIigK_j5TkgwJEUTX9OAdvPymKGdDYiukB3YZBpOjDVKbMOTVDoL8I2B4gc/pubembed?";
+
+const scriptSteps = [
+  { id: "p", text: "The History of Shapes. A TedX Talk by Dr. Triangela Shapiro, Shape Hero.", duration: 8000 },
+  { id: "g6b0e96e27c_0_0", text: "Since the beginning of time, shapes have captured our imagination. They bound the borders of the knowable universe. The sun and moon, for example, were once thought to be an old man and woman in a loveless marriage. Today we know they are ancient circles.", duration: 15000 },
+  { id: "g73e81935dc_0_8", text: "I know what you’re thinking. Shapes are old-fashioned. My parents used shapes. Shapes are over.", duration: 7000 },
+  { id: "g70c6d348ce_0_29", text: "But shapes concern you and your subculture specifically. The crystals that dangle from your necks are actually a form of shapes.", duration: 10000 },
+  { id: "g73e81935dc_0_15", text: "Shapes were invented in the year 50,000 B.C.E. by a gentleman named Loaf Rocktickler.", duration: 8000 },
+  { id: "g73e81935dc_0_0", text: "The word shape originated as a verb, not a noun. It comes from the Old English 'scapan', meaning to create or form.", duration: 9000 },
+  { id: "g70c6d348ce_0_6", text: "Which of us has not resolved firmly to get ‘in shape’ this winter? We are possessed of the gravity of shapes.", duration: 9000 },
+  { id: "g70c6d348ce_0_12", text: "The punishment for irrational shape love can be traced back to antiquity. Hippasus was drowned at sea for constructing a dodecahedron.", duration: 10000 },
+  { id: "g73e81935dc_0_21", text: "Rhomboids and trapezius ride silently under our skin as we exchange cloth rectangles for copper discs.", duration: 8000 },
+  { id: "g73e81935dc_0_32", text: "The inventor of the record, Reggie Recordplayer, put a circle inside a square to delight people.", duration: 8000 },
+  { id: "g70c6d348ce_0_0", text: "Conclusion: Shapes are all around us. Thanks shapes.", duration: 6000 },
+  { id: "g70c6d348ce_0_37", text: "Raquel Welch said: My body is the shape I live in and it shapes the way I live.", duration: 7000 },
+  { id: "g70c6d348ce_0_18", text: "She convinced the chancellor to change the name of Boxford to Oxford. THE END.", duration: 8000 }
+];
+
+document.getElementById('jester-link').addEventListener('click', async function() {
+  const audio = document.getElementById('quinha-audio');
+  const container = document.getElementById('slideshow-container');
+  const iframe = document.getElementById('slideshow-iframe');
+  
+  // Start Music
+  audio.play();
+  container.style.display = 'block';
+
+  for (let step of scriptSteps) {
+    // 1. Change Slide
+    iframe.src = presentationBaseUrl + "&slide=id." + step.id;
+    
+    // 2. Automated Female Voice
+    const utterance = new SpeechSynthesisUtterance(step.text);
+    const voices = window.speechSynthesis.getVoices();
+    // Try to find a female voice
+    utterance.voice = voices.find(v => v.name.includes("Female") || v.name.includes("Google US English")) || voices[0];
+    window.speechSynthesis.speak(utterance);
+
+    // 3. Wait for the duration of the slide [cite: 178]
+    await new Promise(resolve => setTimeout(resolve, step.duration));
+  }
+});
+</script>
 
 
     
