@@ -7,10 +7,24 @@ function showSection(sectionId) {
 }
 
 // 2. SHAPES EASTER EGG DATA
-// Using your provided slide IDs for precise navigation
+// Note: To make animations play, the chunks here represent "Timing"
+// But you MUST set your Google Slides animations to "After Previous" inside the editor.
 const shapesScript = [
-    { id: "p", text: "The History of Shapes. A TedX Talk by Dr. Triangela Shapiro, Shape Hero." },
-    { id: "g6b0e96e27c_0_0", text: "Since the beginning of time, shapes have captured our imagination. They bound the borders of the knowable universe. The sun and moon, for example, were once thought to be an old man and woman in a loveless marriage whose bitter arguments over custody of the earth were what caused night and day. Of course, today we know that that same sun and moon are in fact ancient circles. Shapes define natural fauna, like the starfish, the circle bird, and the rectangle puppy. We rely on shapes to describe our social circumstances: describing anyone perpendicular to our subculture as ‘squares.’ Trianguloid foodstuffs are now estimated to account for 8% of total global GDP—it’s likely you consumed one today, whether it be pizza slices, Doritos, a sandwich half, or pyramid soup. A 2016 study conducted by the Pew Research Institute showed that 98% of humans and 6% of dogs described shapes as ‘Somewhat Important’ or ‘Very Important in my life.’ Indeed, shapes are the primordial ectoplasm in which humanity is suspended; the dense angular syrup into which our lives have been packed." },
+    // SLIDE 1 (Broken into 4 "Clicks" as requested)
+    { id: "p", text: "The History of Shapes." },
+    { id: "p", text: "A TedX Talk..." },
+    { id: "p", text: "...by Dr. Triangela Shapiro." },
+    { id: "p", text: "Shape Hero." },
+
+    // SLIDE 2 (Broken into chunks for pacing)
+    { id: "g6b0e96e27c_0_0", text: "Since the beginning of time, shapes have captured our imagination. They bound the borders of the knowable universe." },
+    { id: "g6b0e96e27c_0_0", text: "The sun and moon, for example, were once thought to be an old man and woman in a loveless marriage whose bitter arguments over custody of the earth were what caused night and day." },
+    { id: "g6b0e96e27c_0_0", text: "Of course, today we know that that same sun and moon are in fact ancient circles." },
+    { id: "g6b0e96e27c_0_0", text: "Shapes define natural fauna, like the starfish, the circle bird, and the rectangle puppy. We rely on shapes to describe our social circumstances: describing anyone perpendicular to our subculture as ‘squares.’" },
+    { id: "g6b0e96e27c_0_0", text: "Trianguloid foodstuffs are now estimated to account for 8% of total global GDP—it’s likely you consumed one today, whether it be pizza slices, Doritos, a sandwich half, or pyramid soup." },
+    { id: "g6b0e96e27c_0_0", text: "A 2016 study conducted by the Pew Research Institute showed that 98% of humans and 6% of dogs described shapes as ‘Somewhat Important’ or ‘Very Important in my life.’ Indeed, shapes are the primordial ectoplasm in which humanity is suspended; the dense angular syrup into which our lives have been packed." },
+
+    // REST OF SLIDES
     { id: "g73e81935dc_0_8", text: "I know what you’re thinking. Shapes are old-fashioned. My parents used shapes. Shapes are over. These days we prefer diffuse unbounded sets distributed at random among various cardinalities of infinity. You don’t care about equalizing torus meridians. You say: Save that partial geometric differential equation drama for your mama. I get it. Hell, I’ll admit it, I even used to feel the same way. You see, I was born a Shapiro. In case you don’t know, I’ll give you a quick etymology lesson: ‘Shapiro’ is derived from the modern English ‘Shape Hero,’ a nom-de-geom conferred to my grandfather after he found the area under the curve of Winston Churchill’s moustache." },
     { id: "g70c6d348ce_0_29", text: "But shapes is not just stuffy old foggy old jolly old england town. Shapes concern you and your subculture specifically. The crystals that dangle heedlessly from your irreverent necks and ears are actually a form of shapes, believe it or not. So as you strut from cafe to co-op and back again, consider how a parallelogram grid replicates along the z-axis of that rock in regular atomic hexagonal lattice to allow the sturdy translucent beauty you covet. Indeed, some of society’s most effective drugs are available in crystalline formats that can be smoked discretely and which scientists agree are responsible for the steady increase in vibing over the last 40 years. It appears modern society is being driven toward a syncretic health-religion of shapes, combining traditions of Euclidean gemoetry, platonic solids, vedic chakras, and mapping meridians on the atlas of the body in order to insert various rectangular prisms of nutrients and columns of satisfaction into this or that aperture." },
     { id: "g73e81935dc_0_15", text: "So before we get too far ahead of ourselves, how about a little quick history. Shapes were invented in the year 50,000 B.C.E. by a gentleman named Loaf Rocktickler. At the time, Mr. Rocktickler was employed as a sun-starer, earning two coconuts a day by staring at the sun, which ensured the stories he told that night around the campfire would be interesting and dynamic to capture the imaginations of his neanderthal compatriots. The permanent circles of sun burned into Mr. Rocktickler’s eyes led him to suggest that the next season of cave paintings be done using abstract shapes instead of aurochs, which at the time were considered the funniest animal. Rocktickler reasoned that by populating vertical surfaces with rectangles, and then decorating the rectangles in a public forum for collective consumption, the men and women in the Plop Plop precinct of Neandertalladega, now new york city, would develop bonds through access to a common topic they could describe and reflect on together. This tradition persists today in art galleries, on phones and TVs, and in window shopping, wherein agreed upon rectangles are audited and discussed by modern humans subconsciously craving the warmth of a burnt cornea but too alienated from sun-staring and the communal campfire to have access the primordial sharing shape." },
@@ -24,44 +38,73 @@ const shapesScript = [
 ];
 
 let currentSlideIdx = 0;
-const slideBase = "https://docs.google.com/presentation/d/1PyHlxvv6sGvsd0dFSGJ9S2KjVCDexYPIenSGSET3Mb0/embed?start=false&loop=false&rm=minimal";
+// We check if src changed to avoid reloading iframe on "internal" clicks
+let lastSrc = ""; 
+const slideBase = "https://docs.google.com/presentation/d/1PyHlxvv6sGvsd0dFSGJ9S2KjVCDexYPIenSGSET3Mb0/embed?start=true&loop=false&rm=minimal";
 
 function startShapesEgg() {
     const overlay = document.getElementById('shapes-overlay');
     const audio = document.getElementById('quinha-audio');
     
     overlay.style.display = 'flex';
+    
+    // Set low volume (10%)
+    audio.volume = 0.1;
     audio.play().catch(e => console.log("Audio play needs interaction"));
     
+    // Setup Double Click to Close
+    window.addEventListener('dblclick', handleDoubleClick);
+
     currentSlideIdx = 0;
     speakSlide(0);
+}
+
+function handleDoubleClick() {
+    const overlay = document.getElementById('shapes-overlay');
+    if(overlay.style.display === 'flex') {
+        closeShapesEgg();
+    }
 }
 
 function speakSlide(idx) {
     if (idx >= shapesScript.length || document.getElementById('shapes-overlay').style.display === 'none') return;
 
     const iframe = document.getElementById('shapes-frame');
-    const subtitle = document.getElementById('egg-subtitles');
-    
-    // Update slide and text
-    iframe.src = slideBase + "&slide=id." + shapesScript[idx].id;
-    subtitle.innerText = shapesScript[idx].text;
+    const tickerText = document.getElementById('egg-ticker-text');
+    const tickerWrap = document.querySelector('.ticker-move');
 
-    const utterance = new SpeechSynthesisUtterance(shapesScript[idx].text);
+    // 1. Update Slide IF ID has changed (Avoids reloading on split-text steps)
+    const newSrc = slideBase + "&slide=id." + shapesScript[idx].id;
+    if (lastSrc !== newSrc) {
+        iframe.src = newSrc;
+        lastSrc = newSrc;
+    }
+
+    // 2. Update Ticker Text
+    tickerText.innerText = shapesScript[idx].text;
     
-    // Voice setup
+    // 3. Setup Old Lady Voice
+    const utterance = new SpeechSynthesisUtterance(shapesScript[idx].text);
     let voices = window.speechSynthesis.getVoices();
     const preferredVoice = voices.find(v => v.name.includes('Female') || v.name.includes('Google US English'));
     if (preferredVoice) utterance.voice = preferredVoice;
 
-    utterance.pitch = 0.8; 
-    utterance.rate = 0.85; 
+    // OLD LADY EFFECT: Lower pitch and slower rate
+    utterance.pitch = 0.6; // Deepens voice
+    utterance.rate = 0.75; // Slows it down
+
+    // 4. Sync Ticker Speed to Voice Speed
+    // Estimate: 150 words per minute normally. At 0.75 rate, approx 112 wpm.
+    // Logic: Calculate roughly how many seconds this will take
+    const wordCount = shapesScript[idx].text.split(' ').length;
+    const estSeconds = Math.max(5, (wordCount / 1.8)); // Crude estimator
+    tickerWrap.style.animationDuration = `${estSeconds}s`;
 
     utterance.onend = () => {
         currentSlideIdx++;
         if (currentSlideIdx < shapesScript.length) {
-            // Short delay to let the slide change settle
-            setTimeout(() => speakSlide(currentSlideIdx), 1200); 
+            // Small pause between lines
+            setTimeout(() => speakSlide(currentSlideIdx), 500); 
         }
     };
 
@@ -71,11 +114,15 @@ function speakSlide(idx) {
 function closeShapesEgg() {
     const overlay = document.getElementById('shapes-overlay');
     const audio = document.getElementById('quinha-audio');
+    
     window.speechSynthesis.cancel();
     audio.pause();
     audio.currentTime = 0;
     overlay.style.display = 'none';
+    
+    // Remove listener to clean up
+    window.removeEventListener('dblclick', handleDoubleClick);
 }
 
-// Initial voice load for Chrome
+// Initial voice load
 window.speechSynthesis.getVoices();
