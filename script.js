@@ -1,45 +1,18 @@
-/**
- * DANIEL NEBRASKA STAINKAMP - PORTFOLIO LOGIC
- */
-
+// 1. SITE NAVIGATION
 function showSection(sectionId) {
-    // 1. Hide all sections
     const sections = document.querySelectorAll('.content-section');
     sections.forEach(section => {
         section.classList.remove('active');
     });
-
-    // 2. Show requested section
     const target = document.getElementById(sectionId);
     if (target) {
         target.classList.add('active');
     }
-
-    // 3. Update sidebar navigation styles
-    const navLinks = document.querySelectorAll('.side-nav a');
-    navLinks.forEach(link => {
-        // If the link's onclick contains the current sectionId, highlight it
-        if (link.getAttribute('onclick').includes(sectionId)) {
-            link.style.opacity = "1";
-            link.style.color = "var(--accent-color)";
-        } else {
-            link.style.opacity = "0.4";
-            link.style.color = "var(--text-color)";
-        }
-    });
-
-    // 4. Reset scroll of the main container to the top
-    document.querySelector('.main-content').scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    // Scrolls back to top when switching sections
+    document.querySelector('.main-content').scrollTop = 0;
 }
 
-// Ensure "Home" is highlighted on initial page load
-document.addEventListener('DOMContentLoaded', () => {
-    showSection('home');
-});
-
+// 2. SHAPES EASTER EGG LOGIC
 const shapesScript = [
     { slide: 1, text: "Since the beginning of time, shapes have captured our imagination. They bound the borders of the knowable universe. The sun and moon, for example, were once thought to be an old man and woman in a loveless marriage whose bitter arguments over custody of the earth were what caused night and day. Of course, today we know that that same sun and moon are in fact ancient circles. Shapes define natural fauna, like the starfish, the circle bird, and the rectangle puppy. We rely on shapes to describe our social circumstances: describing anyone perpendicular to our subculture as ‘squares.’ Trianguloid foodstuffs are now estimated to account for 8% of total global GDP—it’s likely you consumed one today, whether it be pizza slices, Doritos, a sandwich half, or pyramid soup. A 2016 study conducted by the Pew Research Institute showed that 98% of humans and 6% of dogs described shapes as ‘Somewhat Important’ or ‘Very Important in my life.’ Indeed, shapes are the primordial ectoplasm in which humanity is suspended; the dense angular syrup into which our lives have been packed." },
     { slide: 2, text: "I know what you’re thinking. Shapes are old-fashioned. My parents used shapes. Shapes are over. These days we prefer diffuse unbounded sets distributed at random among various cardinalities of infinity. You don’t care about equalizing torus meridians. You say: Save that partial geometric differential equation drama for your mama. I get it. Hell, I’ll admit it, I even used to feel the same way. You see, I was born a Shapiro. In case you don’t know, I’ll give you a quick etymology lesson: ‘Shapiro’ is derived from the modern English ‘Shape Hero,’ a nom-de-geom conferred to my grandfather after he found the area under the curve of Winston Churchill’s moustache." },
@@ -54,15 +27,24 @@ const shapesScript = [
 ];
 
 let currentSlideIndex = 0;
-// REPLACE YOUR_SLIDE_ID BELOW
-const slideBaseUrl = "https://docs.google.com/presentation/d/1PyHlxvv6sGvsd0dFSGJ9S2KjVCDexYPIenSGSET3Mb0/edit?slide=id.p#slide=id.p/embed?start=false&loop=false&rm=minimal&slide=id.p";
+
+// !!! IMPORTANT: REPLACE THE TEXT BELOW WITH YOUR GOOGLE SLIDE ID !!!
+const slideId = "1PyHlxvv6sGvsd0dFSGJ9S2KjVCDexYPIenSGSET3Mb0"; 
+
+const slideBaseUrl = `https://docs.google.com/presentation/d/${slideId}/embed?start=false&loop=false&rm=minimal&slide=id.p`;
 
 function startShapesEgg() {
+    if (slideId === "1PyHlxvv6sGvsd0dFSGJ9S2KjVCDexYPIenSGSET3Mb0") {
+        alert("Setup needed: You need to paste the Google Slide ID into the JavaScript file!");
+        return;
+    }
+
     const overlay = document.getElementById('shapes-overlay');
     const audio = document.getElementById('quinha-audio');
     
     overlay.style.display = 'flex';
-    audio.play();
+    // Attempts to play audio. Note: Browsers sometimes block audio if user hasn't interacted with page yet.
+    if(audio) audio.play().catch(e => console.log("Audio play failed (check file path or browser permissions):", e));
     
     currentSlideIndex = 0;
     speakSlide(currentSlideIndex);
@@ -72,21 +54,27 @@ function speakSlide(index) {
     if (index >= shapesScript.length || document.getElementById('shapes-overlay').style.display === 'none') return;
 
     const iframe = document.getElementById('shapes-frame');
+    // This advances the slide by changing the URL parameter
     iframe.src = slideBaseUrl + (index + 1);
 
     const synth = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(shapesScript[index].text);
 
-    const voices = synth.getVoices();
-    // Targeting "older/feminine" qualities
-    utterance.voice = voices.find(v => v.name.includes('Female') || v.name.includes('Google US English') || v.name.includes('Hazel')) || voices[0];
-    utterance.pitch = 0.7; // Aged, lower tone
-    utterance.rate = 0.85; // Slow, deliberate
+    // VOICE SELECTION
+    let voices = synth.getVoices();
+    // Tries to find a specific older/female sounding voice
+    const preferredVoice = voices.find(v => v.name.includes('Google US English') || v.name.includes('Female')) || voices[0];
+    
+    if (preferredVoice) utterance.voice = preferredVoice;
+    
+    utterance.pitch = 0.8; // Lower pitch for 'older' effect
+    utterance.rate = 0.85; // Slower speed for dramatic effect
 
     utterance.onend = () => {
         currentSlideIndex++;
         if (currentSlideIndex < shapesScript.length) {
-            setTimeout(() => speakSlide(currentSlideIndex), 1200); 
+            // Pause for 1 second before next slide
+            setTimeout(() => speakSlide(currentSlideIndex), 1000); 
         }
     };
 
@@ -97,8 +85,19 @@ function closeShapesEgg() {
     const overlay = document.getElementById('shapes-overlay');
     const audio = document.getElementById('quinha-audio');
     
+    // Stop the voice
     window.speechSynthesis.cancel(); 
-    audio.pause();
-    audio.currentTime = 0;
+    
+    // Stop the music
+    if(audio) {
+        audio.pause();
+        audio.currentTime = 0;
+    }
+    
+    // Hide overlay
     overlay.style.display = 'none';
+    
+    // Reset iframe to stop any video buffering
+    const iframe = document.getElementById('shapes-frame');
+    if (iframe) iframe.src = ""; 
 }
