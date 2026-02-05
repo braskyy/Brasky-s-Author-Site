@@ -7,6 +7,65 @@ function showSection(sectionId) {
 }
 
 // 2. SHAPES EASTER EGG LOGIC
+let currentSlideIdx = 0;
+
+// FIXED: Added the correct ID from your HTML
+const slideBase = "https://docs.google.com/presentation/d/1PyHlxvv6sGvsd0dFSGJ9S2KjVCDexYPIenSGSET3Mb0/embed?start=false&loop=false&rm=minimal";
+
+function startShapesEgg() {
+    const overlay = document.getElementById('shapes-overlay');
+    const audio = document.getElementById('quinha-audio');
+    
+    overlay.style.display = 'flex';
+    
+    // Play audio (Note: Browser may block this if you haven't interacted with the page)
+    audio.play().catch(e => console.log("Audio play blocked until user clicks page."));
+    
+    currentSlideIdx = 0;
+    speakSlide(0);
+}
+
+function speakSlide(idx) {
+    if (idx >= shapesScript.length || document.getElementById('shapes-overlay').style.display === 'none') return;
+
+    const iframe = document.getElementById('shapes-frame');
+    // Navigates the iframe to the specific slide
+    iframe.src = slideBase + "&slide=id.p" + (idx + 1);
+
+    const utterance = new SpeechSynthesisUtterance(shapesScript[idx].text);
+    
+    // Voice Loading Logic
+    let voices = window.speechSynthesis.getVoices();
+    
+    // Try to find a specific voice, otherwise use default
+    const preferredVoice = voices.find(v => v.name.includes('Female') || v.name.includes('Google US English') || v.name.includes('Hazel'));
+    if (preferredVoice) utterance.voice = preferredVoice;
+
+    utterance.pitch = 0.7; 
+    utterance.rate = 0.82; 
+
+    utterance.onend = () => {
+        currentSlideIdx++;
+        if (currentSlideIdx < shapesScript.length) {
+            // 1.5s pause between slides
+            setTimeout(() => speakSlide(currentSlideIdx), 1500); 
+        }
+    };
+
+    window.speechSynthesis.speak(utterance);
+}
+
+function closeShapesEgg() {
+    const overlay = document.getElementById('shapes-overlay');
+    const audio = document.getElementById('quinha-audio');
+    window.speechSynthesis.cancel();
+    audio.pause();
+    audio.currentTime = 0;
+    overlay.style.display = 'none';
+}
+
+
+// 2. SHAPES EASTER EGG LOGIC
 const shapesScript = [
     { slide: 1, text: "The History of Shapes. A TedX Talk by Dr. Triangela Shapiro, Shape Hero." },
     { slide: 2, text: "Since the beginning of time, shapes have captured our imagination. They bound the borders of the knowable universe. The sun and moon, for example, were once thought to be an old man and woman in a loveless marriage whose bitter arguments over custody of the earth were what caused night and day. Of course, today we know that that same sun and moon are in fact ancient circles. Shapes define natural fauna, like the starfish, the circle bird, and the rectangle puppy. We rely on shapes to describe our social circumstances: describing anyone perpendicular to our subculture as ‘squares.’ Trianguloid foodstuffs are now estimated to account for 8% of total global GDP—it’s likely you consumed one today, whether it be pizza slices, Doritos, a sandwich half, or pyramid soup. A 2016 study conducted by the Pew Research Institute showed that 98% of humans and 6% of dogs described shapes as ‘Somewhat Important’ or ‘Very Important in my life.’ Indeed, shapes are the primordial ectoplasm in which humanity is suspended; the dense angular syrup into which our lives have been packed." },
