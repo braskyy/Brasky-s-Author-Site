@@ -194,12 +194,15 @@
     </main>
 </div>
 
-<div id="shapes-overlay">
+<div id="shapes-overlay" class="overlay-hidden">
     <div class="egg-frame-container">
         <iframe id="shapes-frame" src="" frameborder="0" allowfullscreen="true"></iframe>
     </div>
-    <div id="egg-subtitles"></div>
-    <button class="egg-exit-btn" onclick="closeShapesEgg()">CLOSE PRESENTATION</button>
+    
+    <div class="ticker-wrap">
+        <div class="ticker-move" id="egg-ticker-text">
+            </div>
+    </div>
 </div>
 
 <audio id="quinha-audio" src="song for quinha.mp3"></audio>
