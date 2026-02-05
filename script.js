@@ -6,7 +6,7 @@ function showSection(sectionId) {
 }
 
 // 2. SHAPES EASTER EGG
-const slideId = "YOUR_GOOGLE_SLIDE_ID_HERE"; // REPLACE THIS
+const slideId = "1PyHlxvv6sGvsd0dFSGJ9S2KjVCDexYPIenSGSET3Mb0"; // REPLACE THIS
 
 const shapesScript = [
     { text: "The History of Shapes--A TedX Talk by Dr. Triangela Shapiro, Shape Hero", clicksToNext: 4 },
