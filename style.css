@@ -43,6 +43,13 @@ h1 {
     letter-spacing: -1px;
 }
 
+/* THE EASTER EGG STYLING */
+.secret-egg {
+    color: inherit;
+    text-decoration: none;
+    cursor: text; /* Keeps the text cursor so it doesn't look like a link */
+}
+
 .sidebar-sub {
     font-family: var(--font-geom);
     font-weight: 600;
@@ -155,7 +162,7 @@ h1 {
     max-width: 380px;
 }
 
-/* SPACING LOGIC */
+/* TIGHTENED PROJECT LIST SPACING */
 .project-block {
     margin-bottom: 3.5rem; 
 }
@@ -250,31 +257,6 @@ h1 {
     letter-spacing: 1px;
     color: var(--text-color);
     display: block;
-}
-
-/* PLACEHOLDER STYLING */
-.jester-icon {
-    width: 32px;
-    height: 32px;
-    display: block;
-    margin-bottom: 1.2rem;
-    opacity: 0.8;
-}
-
-.placeholder-box {
-    text-align: left;
-    margin-top: 1rem;
-    border-left: 1px solid rgba(0,0,0,0.05);
-    padding-left: 1.5rem;
-}
-
-.placeholder-title {
-    font-family: var(--font-geom);
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--accent-color);
-    margin-bottom: 0.5rem;
 }
 
 @media (max-width: 600px) {
