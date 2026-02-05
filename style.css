@@ -71,6 +71,14 @@ h1 {
     transition: opacity 0.3s;
 }
 
+.nav-external {
+    opacity: 0.6;
+}
+
+.nav-external:hover {
+    opacity: 1;
+}
+
 /* MAIN CONTENT */
 .main-content {
     height: 100vh;
@@ -147,9 +155,9 @@ h1 {
     max-width: 380px;
 }
 
-/* TIGHTENED PROJECT LIST SPACING */
+/* SPACING LOGIC */
 .project-block {
-    margin-bottom: 3.5rem; /* Breathable gap between different works */
+    margin-bottom: 3.5rem; 
 }
 
 .date {
@@ -168,7 +176,7 @@ h1 {
     text-transform: uppercase;
     display: block;
     margin-top: 0.2rem;
-    margin-bottom: 0px !important; /* Eliminates gap below title */
+    margin-bottom: 0px !important; 
     line-height: 1.1;
 }
 
@@ -178,7 +186,7 @@ h1 {
     font-style: italic;
     color: #555;
     max-width: 600px;
-    margin-top: 2px !important; /* Forces the description to sit directly below the title */
+    margin-top: 2px !important; 
     line-height: 1.4;
 }
 
