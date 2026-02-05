@@ -82,7 +82,9 @@ h1 {
     align-items: flex-start;
 }
 
-.book-card-container { flex: 0 0 320px; }
+/* UPDATED: Increased container width for larger image */
+.book-card-container { flex: 0 0 420px; }
+
 .playing-card img {
     width: 100%;
     height: auto;
@@ -92,7 +94,9 @@ h1 {
 .book-details .status { font-family: var(--font-geom); font-size: 0.7rem; letter-spacing: 2px; color: #aaa; }
 .book-details .title { font-size: 3rem; margin: 0.5rem 0; font-weight: 300; }
 .book-details .genre { font-style: italic; margin-bottom: 2rem; color: #888; }
-.book-details .copy p { margin-bottom: 1.5rem; font-size: 1.15rem; max-width: 600px; }
+
+/* UPDATED: Decreased font size for text to balance height */
+.book-details .copy p { margin-bottom: 1.5rem; font-size: 0.95rem; max-width: 600px; }
 
 /* Section Styling */
 .section-label {
@@ -116,11 +120,23 @@ h1 {
     margin-bottom: 0.5rem;
 }
 
+/* UPDATED: Removed grayscale filter */
 .zine-block { display: flex; gap: 2rem; margin-bottom: 4rem; }
-.zine-thumb img { width: 150px; filter: grayscale(100%); transition: 0.5s; border: 1px solid #eee; }
-.zine-thumb img:hover { filter: grayscale(0%); }
+.zine-thumb img { width: 150px; transition: 0.5s; border: 1px solid #eee; }
 
-.album-art, .editorial-art { width: 250px; filter: grayscale(100%); margin-bottom: 1rem; }
+/* UPDATED: Removed grayscale filter */
+.album-art, .editorial-art { width: 250px; margin-bottom: 1rem; }
+
+/* Contact Section Styling */
+.contact-sub-link {
+    display: block;
+    margin-top: 1rem;
+    color: #888;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+.contact-sub-link:hover { color: var(--accent-color); }
 
 /* EASTER EGG OVERLAY */
 #shapes-overlay {
