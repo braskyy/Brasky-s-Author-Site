@@ -1,7 +1,7 @@
 :root {
-    --bg-color: #000;
-    --text-color: #999;
-    --accent-color: #fff;
+    --bg-color: #fdfcf8;
+    --text-color: #444;
+    --accent-color: #000;
     --font-serif: 'Cormorant Garamond', serif;
     --font-geom: 'Hanken Grotesk', sans-serif;
 }
@@ -25,7 +25,7 @@ body {
 /* SIDEBAR */
 .sidebar {
     padding: 3rem;
-    border-right: 1px solid #222;
+    border-right: 1px solid #eee;
 }
 
 .sticky-content {
@@ -48,14 +48,15 @@ h1 {
     font-size: 0.65rem;
     letter-spacing: 3px;
     margin-bottom: 3rem;
-    color: #444;
+    color: #ccc;
 }
 
+/* Makes the Jester trigger look like normal text until clicked */
 .jester-trigger { cursor: text; color: inherit; }
 
 .side-nav a {
     display: block;
-    color: #666;
+    color: #888;
     text-decoration: none;
     font-size: 1.1rem;
     margin-bottom: 0.8rem;
@@ -78,12 +79,13 @@ h1 {
     font-size: 0.7rem;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #444;
+    color: #ccc;
     margin-bottom: 3rem;
 }
 
 .project-block { margin-bottom: 3rem; max-width: 600px; }
-.date { display: block; font-size: 0.8rem; color: #444; margin-bottom: 0.5rem; }
+.date { display: block; font-size: 0.8rem; color: #ccc; margin-bottom: 0.5rem; }
+
 .featured-link {
     color: var(--accent-color);
     font-size: 1.8rem;
@@ -94,25 +96,26 @@ h1 {
 }
 
 .zine-block { display: flex; gap: 2rem; margin-bottom: 4rem; }
-.zine-thumb img { width: 150px; filter: grayscale(100%); transition: 0.5s; }
+.zine-thumb img { width: 150px; filter: grayscale(100%); transition: 0.5s; border: 1px solid #eee; }
 .zine-thumb img:hover { filter: grayscale(0%); }
 
-/* OVERLAY */
+/* EASTER EGG OVERLAY */
 #shapes-overlay {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: #000; z-index: 99999; display: none;
     flex-direction: column; align-items: center; justify-content: center;
 }
 
-.egg-frame-container { width: 80%; aspect-ratio: 16/9; background: #111; }
+.egg-frame-container { width: 85%; aspect-ratio: 16/9; background: #111; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
 #shapes-frame { width: 100%; height: 100%; }
 .egg-exit-btn {
     background: transparent; color: #444; border: 1px solid #444;
     padding: 8px 15px; cursor: pointer; font-family: var(--font-geom); font-size: 0.6rem;
+    letter-spacing: 2px; transition: 0.3s;
 }
+.egg-exit-btn:hover { color: #fff; border-color: #fff; }
 
-/* RESPONSIVE */
 @media (max-width: 900px) {
     .site-grid { grid-template-columns: 1fr; height: auto; }
-    .sidebar { border-right: none; border-bottom: 1px solid #222; }
+    .sidebar { border-right: none; border-bottom: 1px solid #eee; }
 }
