@@ -53,6 +53,7 @@ h1 {
     color: #ccc;
 }
 
+.jester-trigger { cursor: pointer; user-select: none; }
 .jester-trigger:hover { color: var(--accent-color); }
 
 .side-nav a {
@@ -82,7 +83,6 @@ h1 {
     align-items: flex-start;
 }
 
-/* Increased container width for larger image */
 .book-card-container { flex: 0 0 420px; }
 
 .playing-card img {
@@ -94,8 +94,6 @@ h1 {
 .book-details .status { font-family: var(--font-geom); font-size: 0.7rem; letter-spacing: 2px; color: #aaa; }
 .book-details .title { font-size: 3rem; margin: 0.5rem 0; font-weight: 300; }
 .book-details .genre { font-style: italic; margin-bottom: 2rem; color: #888; }
-
-/* Decreased font size for text to balance height */
 .book-details .copy p { margin-bottom: 1.5rem; font-size: 0.95rem; max-width: 600px; }
 
 /* Section Styling */
@@ -125,7 +123,6 @@ h1 {
 
 .album-art, .editorial-art { width: 250px; margin-bottom: 1rem; }
 
-/* Contact Section */
 .contact-sub-link {
     display: block;
     margin-top: 1rem;
@@ -140,14 +137,14 @@ h1 {
 #shapes-overlay {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background: #000; z-index: 99999; 
-    display: none; /* Toggled via JS */
+    display: none; 
     flex-direction: column; align-items: center; justify-content: center;
 }
 
 .egg-frame-container { width: 80%; aspect-ratio: 16/9; background: #111; position: relative; }
-#shapes-frame { width: 100%; height: 100%; pointer-events: none; /* Prevents user clicking slides */ }
+#shapes-frame { width: 100%; height: 100%; pointer-events: none; }
 
-/* Ticker / Marquee Styles */
+/* Caption Ticker Styles */
 .ticker-wrap {
     width: 100%;
     overflow: hidden;
@@ -158,14 +155,15 @@ h1 {
     white-space: nowrap;
     box-sizing: border-box;
     border-top: 1px solid #333;
+    position: relative;
 }
 
 .ticker-move {
     display: inline-block;
-    padding-left: 100%; /* Start off-screen right */
+    padding-left: 100%; 
     animation-timing-function: linear;
     animation-name: ticker;
-    animation-iteration-count: infinite;
+    /* Duration is set by JS per slide */
     
     font-family: 'Hanken Grotesk', sans-serif;
     font-size: 1.5rem;
