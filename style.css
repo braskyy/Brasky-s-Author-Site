@@ -53,8 +53,12 @@ h1 {
     color: #ccc;
 }
 
-.jester-trigger { cursor: pointer; user-select: none; }
-.jester-trigger:hover { color: var(--accent-color); }
+/* UPDATED: Stealth Jester - No hover color, normal cursor */
+.jester-trigger { 
+    cursor: text; 
+    user-select: none; 
+}
+/* No hover rule here ensures it looks like static text */
 
 .side-nav a {
     display: block;
@@ -83,7 +87,12 @@ h1 {
     align-items: flex-start;
 }
 
-.book-card-container { flex: 0 0 420px; }
+/* UPDATED: Fluid responsive behavior */
+/* Starts at 450px max, but shrinks (flex-shrink: 1) if space is limited */
+.book-card-container { 
+    flex: 0 1 450px; 
+    min-width: 250px; /* Prevents it from disappearing completely */
+}
 
 .playing-card img {
     width: 100%;
@@ -107,7 +116,14 @@ h1 {
 }
 
 .project-block { margin-bottom: 3rem; max-width: 600px; }
-.date { display: block; font-size: 0.8rem; color: #ccc; margin-bottom: 0.5rem; }
+
+/* UPDATED: Larger font for years */
+.date { 
+    display: block; 
+    font-size: 1.1rem; 
+    color: #999; /* Slightly darker than #ccc for legibility */
+    margin-bottom: 0.5rem; 
+}
 
 .featured-link {
     color: var(--accent-color);
@@ -163,7 +179,6 @@ h1 {
     padding-left: 100%; 
     animation-timing-function: linear;
     animation-name: ticker;
-    /* Duration is set dynamically by JS */
     
     font-family: 'Hanken Grotesk', sans-serif;
     font-size: 1.5rem;
@@ -180,4 +195,5 @@ h1 {
     .site-grid { grid-template-columns: 1fr; height: auto; }
     .sidebar { border-right: none; border-bottom: 1px solid #eee; padding: 2rem; }
     .tula-layout { flex-direction: column; gap: 2rem; }
+    .book-card-container { flex: 1 1 auto; width: 100%; max-width: 100%; }
 }
